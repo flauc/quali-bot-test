@@ -35,3 +35,6 @@ jobs:
           project-id: ${{ secrets.QUALIBOT_PROJECT_ID }}
           target-url: ${{ needs.build_and_preview.outputs.preview_url }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          browsers: 'chrome'
+          viewports: '1920x1080,768x1024,375x812'
+          scope: 'pr-changes'
