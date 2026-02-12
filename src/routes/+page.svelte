@@ -219,6 +219,70 @@
 		</div>
 	</section>
 
+	<!-- Contact Form Section -->
+	<section id="contact" class="py-20">
+		<div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+			<h2 class="text-4xl font-bold text-white text-center mb-4">Get in Touch</h2>
+			<p class="text-gray-400 text-center mb-12">Have a question about quality assurance? Send us a message.</p>
+
+			{#if showSuccess}
+				<div class="bg-green-600/20 border border-green-500/50 rounded-xl p-6 text-center mb-8 transition-all">
+					<svg class="w-10 h-10 text-green-400 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+					</svg>
+					<p class="text-green-300 text-lg font-semibold">Message sent successfully!</p>
+					<p class="text-green-400/70 text-sm mt-1">We'll get back to you soon.</p>
+				</div>
+			{/if}
+
+			<form onsubmit={(e) => { e.preventDefault(); handleSubmit(); }} class="space-y-6">
+				<div class="grid md:grid-cols-2 gap-6">
+					<div>
+						<label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+						<input
+							type="text"
+							id="name"
+							bind:value={name}
+							required
+							class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors"
+							placeholder="Your name"
+						/>
+					</div>
+					<div>
+						<label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+						<input
+							type="email"
+							id="email"
+							bind:value={email}
+							required
+							class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors"
+							placeholder="you@example.com"
+						/>
+					</div>
+				</div>
+				<div>
+					<label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+					<textarea
+						id="message"
+						bind:value={message}
+						required
+						rows="5"
+						class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors resize-none"
+						placeholder="How can we help you?"
+					></textarea>
+				</div>
+				<div class="text-center">
+					<button
+						type="submit"
+						class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-10 rounded-lg transition-colors"
+					>
+						Send Message
+					</button>
+				</div>
+			</form>
+		</div>
+	</section>
+
 	<!-- Footer -->
 	<footer class="py-12 border-t border-slate-800">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -227,3 +291,21 @@
 		</div>
 	</footer>
 </div>
+
+<script lang="ts">
+	let name = $state('');
+	let email = $state('');
+	let message = $state('');
+	let showSuccess = $state(false);
+
+	function handleSubmit() {
+		showSuccess = true;
+		name = '';
+		email = '';
+		message = '';
+
+		setTimeout(() => {
+			showSuccess = false;
+		}, 5000);
+	}
+</script>
